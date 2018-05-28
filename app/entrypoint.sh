@@ -14,7 +14,11 @@ MM_DBNAME=${MM_DBNAME:-mattermost}
 MM_CONFIG=${MM_CONFIG:-/mattermost/config/config.json}
 
 # Wait for prepare work to be done by another container
-/bin/sh -c while [ ! -f '/mattermost/config/ready' ]; do echo 'waiting for preparation work to be ready...'; sleep 1s; done;
+while [ ! -f '/mattermost/config/ready' ]
+do
+echo 'waiting for preparation work to be ready...';
+sleep 1s;
+done
 
 if [ "${1:0:1}" = '-' ]; then
     set -- platform "$@"
